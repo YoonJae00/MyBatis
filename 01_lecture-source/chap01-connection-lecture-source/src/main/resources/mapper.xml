@@ -4,7 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 매퍼의 이름 등록 -->
 <mapper namespace="mapper">
-    <select id="selectSysdate" resultType="java.util.Date">
+    <select id="selectSysdate" resultType="date">
         SELECT CURDATE()
         FROM DUAL
     </select>

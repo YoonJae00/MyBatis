@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 
+import java.util.Date;
+
 public class Application {
 
     private static String DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -17,7 +19,7 @@ public class Application {
 
     public static void main(String[] args) {
 
-        /*필기.
+        /* 필기.
             DB 접속 관한 환경
             -----------------------------------
             JdbcTransactionFactory : 수동커밋
@@ -33,10 +35,10 @@ public class Application {
                 , new PooledDataSource(DRIVER,URL,USER,PASSWORD)    //  ConnectionPool 사용 유뮤(Pooled or UnPooled)
         );
 
-        /* 필기. 생성한 환경 정보로 Mybatis 설정 객체 생성 */
+        /* 필기. 생성한 환경 정보로 Mybatis 설정 객체 생성  */
         Configuration configuration = new Configuration(environment);
 
-        configuration.addMapper(Mapper.class);
+        configuration.addMapper(Mapper.class);      // 필기. Mapper = DAO 역할을 함.
         /* 필기.
             SqlSessionFactory : SqlSession 객체를 생성하기 위한 팩토리(공장) 역할의 인터페이스
             SqlSessionFactoryBuilder : SqlSessionFactory 인터페이스 타입의 하위 구현 객체를 생성하기 위한 빌드 역할

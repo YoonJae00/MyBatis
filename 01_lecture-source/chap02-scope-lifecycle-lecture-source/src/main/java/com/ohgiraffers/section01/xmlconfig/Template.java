@@ -32,13 +32,9 @@ public class Template {
             }
         }
         SqlSession sqlSession = sqlSessionFactory.openSession(false);
+        System.out.println("SqlSessionFactory 의 hashcode() : " + sqlSessionFactory.hashCode());
+        System.out.println("SqlSession의 hashCode() : " + sqlSession.hashCode());
 
-        java.util.Date date = sqlSession.selectOne("mapper.selectSysdate");
-
-//        System.out.println("SqlSessionFactory 의 hashcode() : " + sqlSessionFactory.hashCode());
-//        System.out.println("SqlSession의 hashCode() : " + sqlSession.hashCode());
-
-        System.out.println(date);
         return sqlSession;
     }
 }

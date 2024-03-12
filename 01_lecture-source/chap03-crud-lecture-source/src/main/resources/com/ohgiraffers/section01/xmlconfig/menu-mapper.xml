@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MenuMapper">
+    <!--    필기. 조회한 컬럼과 menuDTO 를 매핑시키기 위한 설정 -->
+    <resultMap id="menuResultMap" type="com.ohgiraffers.section01.xmlconfig.MenuDTO">
+        <id property="code" column="MENU_CODE"/>
+        <result property="name" column="MENU_NAME"/>
+        <result property="price" column="MENU_PRICE"/>
+        <result property="categoryCode" column="CATEGORY_CODE"/>
+        <result property="orderableStatus" column="ORDERABLE_STATUS"/>
+        <!--        id result 둘다 표현 간으???-->
+    </resultMap>
+
+    <select id="selectAllMenu" resultMap="menuResultMap">
+        SELECT MENU_CODE, MENU_NAME, MENU_PRICE, CATEGORY_CODE, ORDERABLE_STATUS
+        FROM TBL_MENU
+        WHERE ORDERABLE_STATUS = 'Y'
+        ORDER BY MENU_CODE
+    </select>
+    <!-- 필기. 파라미터가 한 개인 경우 바인딩(code) 되는 이름은 상관 없으며,
+              파라미터 타입(parameterType="_int")을 지정하지 않아도 된다.-->
+    <select id="selectMenuByCode" resultMap="menuResultMap" parameterType="_int">
+        SELECT MENU_CODE, MENU_NAME, MENU_PRICE, CATEGORY_CODE, ORDERABLE_STATUS
+        FROM TBL_MENU
+        WHERE MENU_CODE = #{code}
+    </select>
+    <!-- 필기. insert, update, delete 의 경우 int 형으로 기본적으로 수행 결과를 반환한다.
+              파라미터로 전달 된 menu 를 DTO 의 필드명으로 값을 바인딩 해야 한다.
+    -->
+    <select id="insertMenu" parameterType="com.ohgiraffers.section01.xmlconfig.MenuDTO">
+        INSERT INTO TBL_MENU
+        (MENU_NAME, MENU_PRICE, CATEGORY_CODE, ORDERABLE_STATUS)
+        VALUES
+        (#{ name }, #{ price }, #{ categoryCode }, 'Y')
+    </select>
+</mapper>

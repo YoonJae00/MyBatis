@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="846df178-1e93-4057-b85e-6d6563be7aa9" name="Changes" comment="" />
+    <list default="true" id="846df178-1e93-4057-b85e-6d6563be7aa9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/section01/javaconfig/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/section01/javaconfig/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/section01/javaconfig/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/section01/javaconfig/Mapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/section02/xmlconfig/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/section02/xmlconfig/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chap02-scope-lifecycle-lecture-source/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../chap02-scope-lifecycle-lecture-source/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chap02-scope-lifecycle-lecture-source/src/main/java/com/ohgiraffers/section01/xmlconfig/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/../chap02-scope-lifecycle-lecture-source/src/main/java/com/ohgiraffers/section01/xmlconfig/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chap02-scope-lifecycle-lecture-source/src/main/java/com/ohgiraffers/section01/xmlconfig/Template.java" beforeDir="false" afterPath="$PROJECT_DIR$/../chap02-scope-lifecycle-lecture-source/src/main/java/com/ohgiraffers/section01/xmlconfig/Template.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chap02-scope-lifecycle-lecture-source/src/main/resources/mapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chap02-scope-lifecycle-lecture-source/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../chap02-scope-lifecycle-lecture-source/src/main/resources/mybatis-config.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,36 +35,36 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2dWKTvIHVP9bT1pbun1XfySjiAH" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.chap01-connection-lecture-source [:Application.main()].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.chap01-connection-lecture-source [:Application.main()].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -64,6 +74,7 @@
       <option name="presentableId" value="Default" />
       <updated>1710118407485</updated>
       <workItem from="1710118408506" duration="9655000" />
+      <workItem from="1710146679461" duration="4720000" />
     </task>
     <servers />
   </component>

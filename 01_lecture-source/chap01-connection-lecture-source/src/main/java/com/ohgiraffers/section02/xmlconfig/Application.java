@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 
 public class Application {
 
@@ -23,7 +24,7 @@ public class Application {
 
             SqlSession session = sqlSessionFactory.openSession(false);
 
-            java.util.Date date = session.selectOne("mapper.selectSysdate");
+            Date date = session.selectOne("mapper.selectSysdate");
 
             System.out.println(date);
             session.close();
