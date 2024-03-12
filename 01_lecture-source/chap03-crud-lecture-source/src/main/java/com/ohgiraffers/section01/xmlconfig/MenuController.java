@@ -60,4 +60,35 @@ public class MenuController {
             printResult.printErrorMessage("insert");
         }
     }
+
+    public void editMenu(Map<String, String> parameter) {
+
+        int id = Integer.parseInt(parameter.get("id"));
+        String name = parameter.get("name");
+        int price = Integer.parseInt(parameter.get("price"));
+        int categoryCode = Integer.parseInt(parameter.get("categoryCode"));
+
+        MenuDTO menuDTO = new MenuDTO();
+        menuDTO.setCode(id);
+        menuDTO.setName(name);
+        menuDTO.setPrice(price);
+        menuDTO.setCategoryCode(categoryCode);
+
+        if(menuService.editMenu(menuDTO)){
+            printResult.printSuccessMessage("edit");
+        }else{
+            printResult.printErrorMessage("edit");
+        }
+    }
+
+    public void deleteMenu(int id) {
+
+        MenuDTO menuDTO = new MenuDTO();
+        menuDTO.setCode(id);
+
+        if(menuService.deleteMenu(menuDTO)){
+            printResult.printSuccessMessage("delete");
+        } else printResult.printErrorMessage("delete");
+
+    }
 }

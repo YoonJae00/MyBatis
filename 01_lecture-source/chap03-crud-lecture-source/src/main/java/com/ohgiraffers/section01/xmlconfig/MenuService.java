@@ -20,6 +20,7 @@ public class MenuService {
     public MenuService() {
         this.menuDAO = new MenuDAO();
     }
+
     public List<MenuDTO> selectAllMenu() {
 
         SqlSession sqlSession = getSqlSession();
@@ -37,7 +38,7 @@ public class MenuService {
 
         SqlSession sqlSession = getSqlSession();
 
-        MenuDTO menu = menuDAO.selectMenuByCode(sqlSession,code);
+        MenuDTO menu = menuDAO.selectMenuByCode(sqlSession, code);
 
         sqlSession.close();
 
@@ -52,7 +53,7 @@ public class MenuService {
         int result = menuDAO.insertMenu(sqlSession, menu);
 
         // 트렌젝션 제어
-        if(result > 0){
+        if (result > 0) {
             sqlSession.commit();
         } else {
             sqlSession.rollback();
@@ -60,6 +61,34 @@ public class MenuService {
 
         sqlSession.close();
 
+        return result > 0 ? true : false;
+    }
+
+    public boolean editMenu(MenuDTO menuDTO) {
+        SqlSession sqlSession = getSqlSession();
+
+        int result = MenuDAO.editMenu(sqlSession, menuDTO);
+        if (result > 0) {
+            sqlSession.commit();
+        } else {
+            sqlSession.rollback();
+        }
+        sqlSession.close();
+        return result > 0 ? true : false;
+    }
+
+
+    public boolean deleteMenu(MenuDTO menuDTO) {
+        SqlSession sqlSession = getSqlSession();
+
+        int result = MenuDAO.deleteMenu(sqlSession,menuDTO);
+
+        if (result > 0) {
+            sqlSession.commit();
+        } else {
+            sqlSession.rollback();
+        }
+        sqlSession.close();
         return result > 0 ? true : false;
     }
 }

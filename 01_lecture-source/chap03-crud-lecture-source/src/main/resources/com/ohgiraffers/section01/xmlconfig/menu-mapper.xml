@@ -35,4 +35,14 @@
         VALUES
         (#{ name }, #{ price }, #{ categoryCode }, 'Y')
     </select>
+    <select id="editMenu" parameterType="com.ohgiraffers.section01.xmlconfig.MenuDTO">
+        UPDATE TBL_MENU
+        SET MENU_NAME = #{ name }, MENU_PRICE = #{ price }, CATEGORY_CODE = #{categoryCode}
+        WHERE
+        MENU_CODE = #{ code }
+    </select>
+    <select id="deleteMenu" parameterType="com.ohgiraffers.section01.xmlconfig.MenuDTO">
+        DELETE FROM TBL_MENU
+        WHERE MENU_CODE = #{ code }
+    </select>
 </mapper>

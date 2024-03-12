@@ -6,6 +6,11 @@ import java.util.List;
 
 public class MenuDAO {
 
+    public static int deleteMenu(SqlSession sqlSession, MenuDTO id) {
+
+        return sqlSession.delete("MenuMapper.deleteMenu",id);
+    }
+
     public List<MenuDTO> selectAllMenu(SqlSession sqlSession) {
 
         return sqlSession.selectList("MenuMapper.selectAllMenu");
@@ -22,4 +27,10 @@ public class MenuDAO {
 
         return sqlSession.insert("MenuMapper.insertMenu",menu);
     }
+
+    public static int editMenu(SqlSession sqlSession, MenuDTO menuDTO) {
+
+        return sqlSession.insert("MenuMapper.editMenu",menuDTO);
+    }
+
 }
