@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.section01.xml.DynamicSqlMapper">
+<!-- 필기. 별칭 설정 config 파일에서 type 별칭 달기
+  <resultMap id="menuResultMap" type="com.ohgiraffers.common.MenuDTO"/>-->
+    <resultMap id="menuResultMap" type="MenuDTO">
+        <id property="code" column="MENU_CODE"/>
+        <result property="name" column="MENU_NAME"/>
+        <result property="price" column="MENU_PRICE"/>
+        <result property="categoryCode" column="CATEGORY_CODE"/>
+        <result property="orderableStatus" column="ORDERABLE_STATUS"/>
+    </resultMap>
+<!--    필기. <if> 태그 : test 속성의 조건에 해당 할 때만 엘리먼트 구문을 쿼리에 포함한다.-->
+<!--    필기. gte, gt, lte, lt 등등 ( <=(크거나같음) , < , >=(작거나같음), > ) -->
+<!--    필기. <![CDATA[ 문장 ]]> 문장에 해당하는 공간에서는 부등호에 대한 표현이 자유롭다. -->
+    <select id="seletMenuByPrice" parameterType="hashmap" resultMap="menuResultMap">
+        SELECT MENU_CODE, MENU_NAME, MENU_PRICE, CATEGORY_CODE, ORDERABLE_STATUS
+        FROM TBL_MENU
+        WHERE ORDERABLE_STATUS = 'Y'
+        <if test="price gte 0 and price lte 10000">
+            <![CDATA[
+                AND MENU_PRICE < #{price}
+            ]]>
+        </if>
+        <if test="price gt 10000 and price lte 20000">
+            AND MENU_PRICE BETWEEN 10000 AND #{price}
+        </if>
+        <if test="price gt 20000 and price lte 30000">
+            AND MENU_PRICE BETWEEN 2000 and #{price}
+        </if>
+        <if test="price gt 30000">
+            AND MENU_PRICE BETWEEN 30000 AND #{price}
+        </if>
+        ORDER BY MENU_CODE
+    </select>
+</mapper>

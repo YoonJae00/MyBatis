@@ -89,6 +89,7 @@ public class MenuService {
             sqlSession.rollback();
         }
         sqlSession.close();
+        System.out.println(result);
         return result > 0 ? true : false;
     }
 }

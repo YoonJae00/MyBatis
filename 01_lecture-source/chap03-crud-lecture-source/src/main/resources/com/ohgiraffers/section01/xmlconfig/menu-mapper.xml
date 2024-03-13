@@ -41,7 +41,7 @@
         WHERE
         MENU_CODE = #{ code }
     </select>
-    <select id="deleteMenu" parameterType="com.ohgiraffers.section01.xmlconfig.MenuDTO">
+    <select id="deleteMenu" parameterType="_int">
         DELETE FROM TBL_MENU
         WHERE MENU_CODE = #{ code }
     </select>

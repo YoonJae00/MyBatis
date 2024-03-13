@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 필기. mapper 는
+        1. dao 인터페이스와 동일한 패키지에 위치해야 한다.
+        2. dao 인터페이스의 풀네임을 namespace 로 지정해야 한다.
+        3. mapper 인터페이스와 sml 의 이름이 동일해야 한다.
+        4. 작성한 메소드의 이름과 id가 일치하고, 리턴 타입이 일치하는
+            쿼리문을 모두 작성해야 한다.
+-->
+<mapper namespace="com.ohgiraffers.section03.remix.MenuMapper">
+    <resultMap id="menuResultMap" type="com.ohgiraffers.section03.remix.MenuDTO">
+        <id property="code" column="MENU_CODE"/>
+        <result property="name" column="MENU_NAME"/>
+        <result property="price" column="MENU_PRICE"/>
+        <result property="categoryCode" column="CATEGORY_CODE"/>
+        <result property="orderableStatus" column="ORDERABLE_STATUS"/>
+    </resultMap>
+<!--    id는 동작시킬 쿼리문과 동일해야 함.-->
+    <select id="selectAllMenu" resultMap="menuResultMap">
+        SELECT MENU_CODE, MENU_NAME, MENU_PRICE, CATEGORY_CODE, ORDERABLE_STATUS
+        FROM TBL_MENU
+        WHERE ORDERABLE_STATUS = 'Y'
+        ORDER BY MENU_CODE
+    </select>
+
+    <select id="selectMenuByCode" parameterType="_int" resultMap="menuResultMap">
+        SELECT MENU_CODE, MENU_NAME, MENU_PRICE, CATEGORY_CODE, ORDERABLE_STATUS
+        FROM TBL_MENU
+        WHERE ORDERABLE_STATUS = 'Y' AND MENU_CODE = #{code}
+    </select>
+    <insert id="insertMenu" parameterType="com.ohgiraffers.section03.remix.MenuDTO">
+        INSERT INTO TBL_MENU
+        (MENU_NAME, MENU_PRICE, CATEGORY_CODE, ORDERABLE_STATUS)
+        VALUES
+        (#{name}, #{price}, #{categoryCode}, 'Y')
+    </insert>
+    <update id="updateMenu" parameterType="com.ohgiraffers.section03.remix.MenuDTO">
+        UPDATE TBL_MENU
+        SET MENU_NAME = #{name}, MENU_PRICE = #{price}, CATEGORY_CODE = #{categoryCode}
+        WHERE MENU_CODE = #{code}
+    </update>
+    <delete id="deleteMenu" parameterType="_int">
+        DELETE FROM TBL_MENU
+        WHERE MENU_CODE = #{code}
+    </delete>
+</mapper>
