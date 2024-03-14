@@ -102,7 +102,7 @@ public class Application {
     private static Map<String,String> inputMenuCode() {
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("조회할 메뉴 코드르 입력해주세요 : ");
+        System.out.print("조회할 메뉴 코드를 입력해주세요 : ");
         String code = sc.nextLine();
 
         Map<String ,String> parameter = new HashMap<>();

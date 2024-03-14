@@ -38,7 +38,7 @@
     </insert>
     <update id="updateMenu" parameterType="com.ohgiraffers.section03.remix.MenuDTO">
         UPDATE TBL_MENU
-        SET MENU_NAME = #{name}, MENU_PRICE = #{price}, CATEGORY_CODE = #{categoryCode}
+        SET MENU_NAME = #{name}, MENU_PRICE = #{price}, CATEGORY_CODE = #{ㄹ}
         WHERE MENU_CODE = #{code}
     </update>
     <delete id="deleteMenu" parameterType="_int">
