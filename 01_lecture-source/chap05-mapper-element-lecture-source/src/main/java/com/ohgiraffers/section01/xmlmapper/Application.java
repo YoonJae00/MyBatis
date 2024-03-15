@@ -22,7 +22,7 @@ public class Application {
             switch (no){
                 case 1: elementTestService.selectCacheTest(); break;
                 case 2: elementTestService.resultmapSubMenu(); break;
-                case 3: break;
+                case 3: elementTestService.selectSqlTest(); break;
                 case 4: break;
                 case 9: return;
             }

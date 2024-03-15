@@ -60,6 +60,8 @@
          1. id : pk 컬럼을 매핑하기 위한 태그이다. (성능 향상)
          2. result : pk 가 아닌 일반 컬럼에 매핑하기 위한 태그
          3. constructor : 인스턴스화 되는 클래스의 생성자에 결과를 삽입하기 위해 사용
+         4. association : 복잡한 타입의 연관관계로 1:1 포함 관계인 경우 사용한다.
+         5. collection : 복잡한 타입의 연관관계로 1:다 포함 관계인 경우 사용한다.
 -->
 
 <!--    필기. <constructor>
@@ -82,4 +84,80 @@
         FROM TBL_MENU
         WHERE ORDERABLE_STATUS = 'Y'
     </select>
+
+<!--    필기. association  -->
+<!--    필기. resultMap 을 구성하는 방법
+              1. 따로 만든 resultMap 을 이용하는 방법 -->
+<!--    <resultMap id="categoryResultMap" type="com.ohgiraffers.common.CategoryDTO">-->
+<!--        <id property="code" column="CATEGORY_CODE"/>-->
+<!--        <result property="name" column="CATEGORY_NAME"/>-->
+<!--        <result property="refCategoryCode" column="REF_CATEGORY_CODE"/>-->
+<!--    </resultMap>-->
+<!--    -->
+<!--    <resultMap id="menuAndCategoryResultMap" type="com.ohgiraffers.common.MenuAndCategoryDTO">-->
+<!--        <id property="code" column="MENU_CODE"/>-->
+<!--        <result property="name" column="MENU_NAME"/>-->
+<!--        <result property="price" column="MENU_PRICE"/>-->
+<!--        <result property="orderableStatus" column="ORDERABLE_STATUS"/>-->
+<!--        <association property="categoryDTO" resultMap="categoryResultMap"/>-->
+<!--    </resultMap>-->
+
+<!--    필기. resultMap 을 구성하는 방법 2. association 내에 id, result 작성하는 방법 -->
+    <resultMap id="menuAndCategoryResultMap" type="com.ohgiraffers.common.MenuAndCategoryDTO">
+        <id property="code" column="MENU_CODE"/>
+        <result property="name" column="MENU_NAME"/>
+        <result property="price" column="MENU_PRICE"/>
+        <result property="orderableStatus" column="ORDERABLE_STATUS"/>
+        <association property="categoryDTO" javaType="com.ohgiraffers.common.CategoryDTO">
+            <id property="code" column="CATEGORY_CODE"/>
+            <result property="name" column="CATEGORY_NAME"/>
+            <result property="refCategoryCode" column="REF_CATEGORY_CODE"/>
+        </association>
+    </resultMap>
+
+<!--    필기. 메뉴테이블에 있는 모든 컬럼, 카테고리테이블에 있는 모든 컬럼-->
+    <select id="selectResultMapAssociationTest" resultMap="menuAndCategoryResultMap">
+        SELECT A.MENU_CODE, A.MENU_NAME, A.MENU_PRICE, A.ORDERABLE_STATUS, B.CATEGORY_CODE, B.CATEGORY_NAME, B.REF_CATEGORY_CODE
+        FROM TBL_MENU A
+        JOIN TBL_CATEGORY B ON (A.CATEGORY_CODE = B.CATEGORY_CODE)
+        WHERE A.ORDERABLE_STATUS = 'Y'
+    </select>
+
+    <resultMap id="categoryAndMenuResultMap" type="com.ohgiraffers.common.CategoryAndMenuDTO">
+        <id property="code" column="CATEGORY_CODE"/>
+        <result property="name" column="CATEGORY_NAME"/>
+        <result property="refCategoryCode" column="REF_CATEGORY_CODE"/>
+        <collection property="menuList" ofType="com.ohgiraffers.common.MenuDTO">
+            <id property="code" column="MENU_CODE"/>
+            <result property="name" column="MENU_NAME"/>
+            <result property="categoryCode" column="CATEGORY_CODE"/>
+            <result property="orderableStatus" column="ORDERABLE_STATUS"/>
+        </collection>
+    </resultMap>
+    <select id="selectResultMapCollectionTest" resultMap="categoryAndMenuResultMap">
+        SELECT A.CATEGORY_CODE, A.CATEGORY_NAME, A.REF_CATEGORY_CODE, B.MENU_CODE, B.MENU_NAME, B.MENU_PRICE, B.CATEGORY_CODE, B.ORDERABLE_STATUS
+        FROM TBL_CATEGORY A
+        LEFT JOIN TBL_MENU B ON (A.CATEGORY_CODE = B.CATEGORY_CODE)
+        ORDER BY A.CATEGORY_CODE
+    </select>
+
+<!--    필기. <sql> 엘리먼트 각 매핑 구문에서 공통으로 사용할 수 있는 SQL 문자열의 일부를 정의하고 재사용하기 위해 사용-->
+    <sql id="columns">
+        MENU_CODE, MENU_NAME, MENU_PRICE, CATEGORY_CODE, ORDERABLE_STATUS
+    </sql>
+
+    <select id="selectSqlTest" resultMap="menuResultMap2">
+        SELECT <include refid="columns"/>
+        FROM TBL_MENU
+        WHERE ORDERABLE_STATUS = 'Y'
+    </select>
+
+<!--    필기. 자주 사용하는 속성
+            1. parameterType : 파라미터의 타입을 의미. 이미 정의 된 타입(hashmap 등) 을 사용할 수 있고,
+                                개발자가 정의한 타입을 사용하는 경우 full-name 을 기술해야 한다.
+            2. resultType : 매핑 구문의 결과 행을 반환할 타입이다. 전체 결과의 타입을 지정하는 것이 아닌
+                            하나의 행(row)에 해당하는 타입을 설정해야 한다.
+            3. resultMap : 매핑 구문의 결과 행을 미리 선언한 resultMap 을 이용한다는 의미
+                                -->
+
 </mapper>
